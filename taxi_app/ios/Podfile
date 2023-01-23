@@ -21,7 +21,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'taxi_app' do
+target 'Compare' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -43,7 +43,7 @@ target 'taxi_app' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'taxi_appTests' do
+  target 'CompareTests' do
     inherit! :complete
     # Pods for testing
   end
