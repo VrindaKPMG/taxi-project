@@ -19,27 +19,22 @@ import {
 import Search from './Screens/SearchFor';
 import Map from './Screens/Map'
 import Authentication from './Screens/Authentication';
+import Posts from './Screens/Posts';
+import SignUp from './Screens/SignUp';
+import Profile from './Screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
 
-
 function App(): JSX.Element {
-  // const isDarkMode = useColorScheme() === 'dark';
-
-
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  // };
-
+  
   return(
       <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
         name='Search'
         component={Search}
-        options={{title:"Search for your next ride"}}/>
+        options={{title:"Good for your wallet. Good for the hive."}}/>
 
         <Stack.Screen
         name="Map"
@@ -51,10 +46,25 @@ function App(): JSX.Element {
         component={Authentication}
         options={{title:"Log into Your Account"}}/>
 
-        
+        <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{title:"Sign Up For an Account"}}/>
+
+        <Stack.Screen
+        name="Posts"
+        component={Posts}
+        options={{title:`Your ride awaits`}}/>
+
+        <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{title:`My Account`}}/>
+
 
       </Stack.Navigator>
-      
+
+    
     </NavigationContainer>
 
 

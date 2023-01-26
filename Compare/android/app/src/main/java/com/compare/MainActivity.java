@@ -1,4 +1,5 @@
 package com.compare;
+import expo.modules.ReactActivityDelegateWrapper;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
@@ -33,13 +34,13 @@ protected void onCreate(Bundle savedInstanceState) {
    */
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
-    return new DefaultReactActivityDelegate(
+    return new ReactActivityDelegateWrapper(this, BuildConfig.IS_NEW_ARCHITECTURE_ENABLED, new DefaultReactActivityDelegate(
         this,
         getMainComponentName(),
         // If you opted-in for the New Architecture, we enable the Fabric Renderer.
         DefaultNewArchitectureEntryPoint.getFabricEnabled(), // fabricEnabled
         // If you opted-in for the New Architecture, we enable Concurrent React (i.e. React 18).
         DefaultNewArchitectureEntryPoint.getConcurrentReactEnabled() // concurrentRootEnabled
-        );
+        ));
   }
 }

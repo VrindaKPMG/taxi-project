@@ -12,7 +12,8 @@ import {
     View,
     Alert,
     Button,
-    Pressable
+    Pressable,
+    TouchableOpacity
   } from 'react-native';
 import {
     Colors
@@ -20,7 +21,7 @@ import {
 
 import Header from '../Components/Header';
 import Car from '../Components/Image';
-import Authentication from './Authentication';
+
 
 const Search = ({navigation}) => {
 
@@ -39,33 +40,36 @@ const Search = ({navigation}) => {
 
         if (pickup === "") {
           Alert.alert(`Fill in your pickup location please`)
+          console.log("blue")
         }
         else if (destination === "") {
           Alert.alert(`Fill in your destination please`)
         }
         else {
-          Alert.alert(`Checking for rides from ${pickup} to ${destination}`)
+          navigation.navigate("Posts")
         }
         
     
       }
     
       return (
-        <SafeAreaView style={{backgroundColor: '#E99E99'}}>
+        <SafeAreaView style={{backgroundColor:"#F5DCE2", flex:1}} >
+          
           <StatusBar
             barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            backgroundColor="#E99E99"
+            style={{backgroundColor:"#F5DCE2"}}
             
           />
+          <Header></Header>
+
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={{backgroundColor:"#E99E99"}}>
+            style={{backgroundColor:"#F5DCE2"}}>
             
             <View style={{alignItems: 'center'}}>
-                <Header ></Header>
-                <Button color="green" title="Log In" onPress={() => navigation.navigate("Authentication")}></Button>
-    
-              <Text style={styles.highlight}>Good for your wallet. Good for the hive.</Text>
+                
+                <Button color="#492C2D" title="Log In Or Sign Up" onPress={() => navigation.navigate("Authentication")}></Button>
+
     
             </View>
     
@@ -75,7 +79,7 @@ const Search = ({navigation}) => {
             value={pickup}
             ></TextInput>
 
-            <Button color="green" title="Find on Map" onPress={()=> navigation.navigate("Map")}></Button>
+            <Button color="#492C2D" title="Find on Map" onPress={()=> navigation.navigate("Map")}></Button>
 
     
             <TextInput style={styles.textInput}
@@ -84,11 +88,13 @@ const Search = ({navigation}) => {
             value={destination}
             ></TextInput>
     
-            
-            <Pressable style={{alignItems:'center', justifyContent:'center', paddingVertical:12, paddingHorizontal:32, borderRadius:3}}>
-              <Text style={{backgroundColor:"#B9B029",
-            color:"white"}} onPress={() => letsGo()}>Let's Go</Text>
+            <TouchableOpacity style={{borderColor:'#F19931'}}>
+            <Pressable style={{alignItems:'center', justifyContent:'center', paddingVertical:10, paddingHorizontal:30, borderRadius: 100,}}>
+              <Text style={{backgroundColor:"#F2993F", 
+            color:"white", fontSize:17, paddingHorizontal:10, paddingVertical:5}} onPress={() => letsGo()}>Let's Go</Text>
             </Pressable>
+            </TouchableOpacity>
+            
     
     
             <Car></Car>
@@ -113,9 +119,6 @@ const Search = ({navigation}) => {
         fontWeight: '400',
       },
       highlight: {
-        fontWeight: '700',
-        fontSize:20,
-        color: "#2C1F61"
       }, 
       textInput: {
         backgroundColor: "#FCF9F5",
