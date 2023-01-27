@@ -22,6 +22,7 @@ import Authentication from './Screens/Authentication';
 import Posts from './Screens/Posts';
 import SignUp from './Screens/SignUp';
 import Profile from './Screens/Profile';
+import FindUserJourney from './Screens/UserJourneys';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,7 +51,7 @@ function App(): JSX.Element {
         <Stack.Screen
         name="SignUp"
         component={SignUp}
-        options={{title:"Sign Up For an Account"}}/>
+        options={{title:"Join the hive."}}/>
 
         <Stack.Screen
         name="Posts"
@@ -61,6 +62,11 @@ function App(): JSX.Element {
         name="Profile"
         component={Profile}
         options={{title:`My Account`}}/>
+
+        <Stack.Screen
+        name="UserJourneys"
+        component={FindUserJourney}
+        options={{title:`Journeys for You`}}/>
 
         </Stack.Navigator>
 

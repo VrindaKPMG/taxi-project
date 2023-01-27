@@ -110,7 +110,6 @@ const Map = () => {
 
 
     return (
-        <SafeAreaView style={{flex:1}}>
          
             <View style={styles.container}>
             
@@ -167,7 +166,7 @@ const Map = () => {
       </View>
       
     </View>
-        </SafeAreaView>
+       
     )
 
 };
@@ -176,6 +175,7 @@ const styles = StyleSheet.create({
     container: {
       alignItems: "center",
       justifyContent: "center",
+      flex:0.85
     },
     map: {
       width: Dimensions.get("window").width,

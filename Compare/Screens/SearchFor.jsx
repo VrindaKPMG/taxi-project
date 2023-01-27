@@ -100,6 +100,8 @@ const Search = ({navigation}) => {
     
             <Car></Car>
 
+            {/* <Button title="User Journey" onPress={() => navigation.navigate("UserJourneys")}></Button> */}
+
             
     
           </ScrollView>
