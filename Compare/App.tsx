@@ -26,6 +26,7 @@ import Profile from './Screens/Profile';
 const Stack = createNativeStackNavigator();
 
 
+
 function App(): JSX.Element {
   
   return(
@@ -61,10 +62,10 @@ function App(): JSX.Element {
         component={Profile}
         options={{title:`My Account`}}/>
 
+        </Stack.Navigator>
 
-      </Stack.Navigator>
+      
 
-    
     </NavigationContainer>
 
 

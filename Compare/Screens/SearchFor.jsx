@@ -18,9 +18,10 @@ import {
 import {
     Colors
   } from 'react-native/Libraries/NewAppScreen';
-
+  import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Header from '../Components/Header';
 import Car from '../Components/Image';
+import Profile from './Profile';
 
 
 const Search = ({navigation}) => {
@@ -29,7 +30,7 @@ const Search = ({navigation}) => {
     const [destination, setDestination] = useState("");
     
     const isDarkMode = useColorScheme() === 'dark';
-
+    const Tab = createBottomTabNavigator();
 
 
   const backgroundStyle = {
@@ -98,8 +99,13 @@ const Search = ({navigation}) => {
     
     
             <Car></Car>
+
+            
     
           </ScrollView>
+          <Tab.Navigator>
+        <Tab.Screen name="Account" component={Profile}/>
+      </Tab.Navigator>
         </SafeAreaView>
       );
     }
