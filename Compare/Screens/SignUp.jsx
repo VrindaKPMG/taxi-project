@@ -77,7 +77,7 @@ const SignUp = ({navigation}) => {
         <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
             <View style={{alignItems:'center'}}>
             <Header></Header>
-            <Text>{'\n'}Create An Account{'\n'}</Text>
+            <Text style={styles.titles}>{'\n'}Create An Account{'\n'}</Text>
         </View>
             <TextInput style={styles.input} placeholder="Username" onChangeText={(text)=>{setUsernameState(text)}}/>
             <Text>{'\n'}</Text>
@@ -91,29 +91,19 @@ const SignUp = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-    },
-    highlight: {
-      fontWeight: '700',
-    },
     input: {
       borderColor: "gray",
+      backgroundColor:'#FCF9F5',
       width: "100%",
       borderWidth: 1,
       borderRadius: 10,
       padding: 10,
     },
+    titles: {
+      fontSize:15,
+      fontWeight: '600'
+    }, 
+
   });
 
 export default SignUp;

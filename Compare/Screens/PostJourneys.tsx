@@ -56,6 +56,7 @@ const PostJourney = ({navigation}) => {
         database: 'UserDatabase',
         dataSource: 'theWasabiBeesSpike',
         document: {
+        username: "TestUser",
           pickup: Userstart,
           destination: Userend,
           date: Userdate,

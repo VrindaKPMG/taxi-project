@@ -1,12 +1,13 @@
 import { Text, View, Button, SafeAreaView,
     StatusBar,
     StyleSheet,
-    
+    Pressable,
     Alert,
     TextInput, } from "react-native";
 import Header from "../Components/Header";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
+
 
 
 
@@ -50,48 +51,54 @@ const Authentication = ({navigation}) => {
             <Header></Header>
         </View>
         <View style={{alignItems:"center"}}> 
-        <Text style={{fontSize:15, fontWeight:'500'}}>{'\n'}Sign Into Your Account{'\n'}</Text> 
+        <Text style={styles.titles}>{'\n'}Sign Into Your Account{'\n'}</Text> 
         <TextInput style={styles.input} placeholder="Username" onChangeText={(text)=>{setUsernameState(text)}}/>
         <Text>{'\n'}</Text>
         <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(text)=>{setPasswordState(text)}}/>
-        <Button title="Sign In" onPress={()=> {if(user===""||pass===""){Alert.alert(`Please fill in the required fields`)}else{checkUserExists()}}}/>
-        
+        <Pressable>
+        <Text style={styles.buttonText} onPress={()=> {if(user===""||pass===""){Alert.alert(`Please fill in the required fields`)}else{checkUserExists()}}}>Sign In</Text>
+        </Pressable>
         </View> 
-        <View>
-        <Text style={{fontSize:20}}>Don't have an account? <Button color="#492C2D" title="Sign Up" onPress={()=> navigation.navigate("SignUp")}></Button></Text>
-        </View>
+
+        <View style={{alignItems:"center"}}>
+        <Text>{'\n'}{'\n'}{'\n'}</Text>
+    
+        <Text style={{fontSize:25, fontWeight:"500"}}>Don't have an account?</Text>
+        <Pressable > 
+            <Text style={styles.buttonText} onPress={()=> navigation.navigate("SignUp")}>Sign Up
+            </Text></Pressable>
+            </View>
 
         </SafeAreaView>
+        
         
 
     )
 
 };
 const styles = StyleSheet.create({
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-    },
-    highlight: {
-      fontWeight: '700',
-    },
     input: {
       borderColor: "gray",
+      backgroundColor:'#FCF9F5',
       width: "100%",
       borderWidth: 1,
       borderRadius: 10,
       paddingTop: 10,
       paddingBottom: 10
     },
+    titles: {
+        fontSize:20,
+        fontWeight: '600'
+      }, 
+      buttonText: {
+        fontSize: 20, 
+        fontWeight:"400",
+        backgroundColor:"#F2993F", 
+        color:"white",
+        paddingHorizontal:10, 
+        paddingVertical:5,
+        marginTop:50
+      },
   });
 
 export default Authentication;

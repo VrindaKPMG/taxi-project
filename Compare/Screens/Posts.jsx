@@ -1,22 +1,63 @@
-import { Text, View, StatusBar, SafeAreaView} from "react-native";
+import { Text, View, StatusBar, SafeAreaView, FlatList} from "react-native";
 import Logo from "../Components/Logo";
 
 
-const Posts = () => {
+const Posts = ({results}) => {
 
-    return (
-        <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
-            <View style={{backgroundColor:'#F5DCE2', flexDirection:"row"}}>
-                <Logo></Logo>
-                <Text style={{fontSize:25, fontWeight:'500'}}>{'\n'}Rides to your destination</Text>
+    console.log(results)
+
+
+
+
+
+    
+    while (results === undefined) {
+        return (
+            <Text> No results found. Please go back and try again</Text>
+        )
+
+    }
+
+    if (results) {
+
+        return (
+            <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
+                <View style={{backgroundColor:'#F5DCE2', flexDirection:"row"}}>
+                    <Logo></Logo>
+                    <Text style={{fontSize:25, fontWeight:'500'}}>{'\n'}Rides to your destination</Text>
+                    </View>
+                <View>
+                    <Text>{'\n'}Render posts here please{'\n'}</Text>
                 </View>
-            <View>
-                <Text>{'\n'}Render posts here please{'\n'}</Text>
-            </View>
-        </SafeAreaView>
-        
+    
+                {results  ? results.map((result) => {
+                        return (
+                        <View key={result._id}>
+                            <Text>{result.pickup}</Text>
+                        </View>)
+                        
+                    }) : null } 
+    
 
-    )
+                {/* {results ? <FlatList data={results}
+            renderItem={({result}) => <Text>
+                {result}
+            </Text>}></FlatList> : null} */}
+
+
+            {/* <FlatList data={results}
+            renderItem={({result}) => <Text>
+                {result}
+            </Text>}></FlatList>  */}
+        
+                    
+            </SafeAreaView>
+
+        )
+
+    }
+
+    
 
 };
 

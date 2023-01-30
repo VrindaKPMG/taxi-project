@@ -12,15 +12,15 @@ import {
     TouchableOpacity,
     Pressable
   } from 'react-native';
-import {
-    Colors,
-} from 'react-native/Libraries/NewAppScreen';
 import { useState } from 'react';
 import Logo from '../Components/Logo';
+import Posts from './Posts';
 
 
 
 export default function FindUserJourney({navigation}){
+
+
    
     const [start, setPickup]=useState("")
     const [end, setDestination]=useState("")
@@ -28,6 +28,8 @@ export default function FindUserJourney({navigation}){
     const [date, setDate]=useState('26/01/23')
     const [time, setTime]=useState('12:00')
     const [foundJourney, setJourneyFound]=useState("")
+    const [results, setResults] = useState([])
+
     const createUser=()=>{
         const findJourney = {
             method: 'post',
@@ -48,10 +50,17 @@ export default function FindUserJourney({navigation}){
             setJourneyFound("")
             axios(findJourney)
             .then(function (response) {
+              
                 if(response.data.documents.length===0){
-                  setJourneyFound("failure")
+                  Alert.alert(`Sorry no journeys match your search criteria`)
                 }else{
-                  setJourneyFound("success")
+                   setResults(response.data.documents)
+                   
+                  //  return (
+                  //   <Posts results={results} />
+                  //  )
+                   
+                 
                 }
             })
             .catch(function (error) {
@@ -59,6 +68,9 @@ export default function FindUserJourney({navigation}){
             })
     }
 
+
+    console.log(results, "in userjourney")
+ 
 
     return (
         <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
@@ -89,14 +101,18 @@ export default function FindUserJourney({navigation}){
             <TouchableOpacity style={{borderColor:'#F19931'}}>
             <Pressable style={{alignItems:'center', justifyContent:'center', paddingVertical:10, paddingHorizontal:30, borderRadius: 100,}}>
               <Text style={{backgroundColor:"#F2993F", 
-            color:"white", fontSize:17, paddingHorizontal:10, paddingVertical:5}} onPress={() => {navigation.navigate("Posts"), createUser()}}>Find Journey</Text>
-            {foundJourney==="success" ? <Text>We have found you a journey!</Text> : <Text></Text>}
-            {foundJourney==="failure" ? Alert.alert(`Sorry no journeys match your search criteria`) : <Text></Text>}
+            color:"white", fontSize:17, paddingHorizontal:10, paddingVertical:5}} onPress={() => {createUser(), navigation.navigate("Posts")}}>Find Journey</Text>
+           
             </Pressable>
             </TouchableOpacity>
 
             </View>
-       
+
+            <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+            
+            {results !== undefined && results.length !== 0 ? <Posts results={results}/> : null}
+            
+
         </SafeAreaView>
     )
 };
