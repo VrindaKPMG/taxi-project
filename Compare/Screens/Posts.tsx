@@ -4,21 +4,12 @@ import Logo from "../Components/Logo";
 
 const Posts = ({results}) => {
 
-    console.log(results)
+
+    console.log(results, "in posts")
 
 
 
 
-
-    
-    while (results === undefined) {
-        return (
-            <Text> No results found. Please go back and try again</Text>
-        )
-
-    }
-
-    if (results) {
 
         return (
             <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
@@ -28,15 +19,18 @@ const Posts = ({results}) => {
                     </View>
                 <View>
                     <Text>{'\n'}Render posts here please{'\n'}</Text>
+                
                 </View>
     
-                {results  ? results.map((result) => {
+
+                {results !== undefined ? results.map((result) => {
                         return (
                         <View key={result._id}>
                             <Text>{result.pickup}</Text>
                         </View>)
                         
-                    }) : null } 
+                        
+                    }) : null} 
     
 
                 {/* {results ? <FlatList data={results}
@@ -53,12 +47,9 @@ const Posts = ({results}) => {
                     
             </SafeAreaView>
 
-        )
-
-    }
+        )     
 
     
-
 };
 
 export default Posts;

@@ -54,12 +54,7 @@ export default function FindUserJourney({navigation}){
                 if(response.data.documents.length===0){
                   Alert.alert(`Sorry no journeys match your search criteria`)
                 }else{
-                   setResults(response.data.documents)
-                   
-                  //  return (
-                  //   <Posts results={results} />
-                  //  )
-                   
+                   setResults(response.data.documents)    
                  
                 }
             })
@@ -110,7 +105,7 @@ export default function FindUserJourney({navigation}){
 
             <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
             
-            {results !== undefined && results.length !== 0 ? <Posts results={results}/> : null}
+            {results !== undefined ? <Posts results={results} /> : null }
             
 
         </SafeAreaView>
