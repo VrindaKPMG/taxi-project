@@ -59,7 +59,7 @@ const SignUp = ({navigation}) => {
             <TextInput style={styles.input} placeholder="Username" onChangeText={(text)=>{setUsernameState(text)}}/>
             <Text>{'\n'}</Text>
             <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(text)=>{setPasswordState(text)}}/>
-            <Button title="Sign Up" onPress={()=>{createUser(), navigation.navigate("UserJourneys")}}/>
+            <Button title="Sign Up" onPress={()=>{createUser(), navigation.navigate("Crossway")}}/>
 
         </SafeAreaView>
         

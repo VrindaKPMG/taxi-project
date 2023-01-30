@@ -23,6 +23,8 @@ import Posts from './Screens/Posts';
 import SignUp from './Screens/SignUp';
 import Profile from './Screens/Profile';
 import FindUserJourney from './Screens/UserJourneys';
+import Crossway from './Screens/Crossway';
+import PostJourney from './Screens/PostJourneys';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +35,13 @@ function App(): JSX.Element {
   return(
       <NavigationContainer>
       <Stack.Navigator>
+
+      <Stack.Screen
+        name="Authentication"
+        component={Authentication}
+        options={{title:"Log into Your Account"}}/>
+
+
         <Stack.Screen
         name='Search'
         component={Search}
@@ -43,10 +52,6 @@ function App(): JSX.Element {
         component={Map}
         options={{title:"Pin Your Location"}}/>
 
-        <Stack.Screen
-        name="Authentication"
-        component={Authentication}
-        options={{title:"Log into Your Account"}}/>
 
         <Stack.Screen
         name="SignUp"
@@ -67,6 +72,16 @@ function App(): JSX.Element {
         name="UserJourneys"
         component={FindUserJourney}
         options={{title:`Journeys for You`}}/>
+
+        <Stack.Screen
+        name="Crossway"
+        component={Crossway}
+        options={{title:`Welcome to BeeRide`}}/>
+
+        <Stack.Screen
+        name="PostJourney"
+        component={PostJourney}
+        options={{title:`Post your journey. Make some honey. 🍯`}}/>    
 
         </Stack.Navigator>
 

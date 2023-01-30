@@ -56,7 +56,7 @@ const Authentication = ({navigation}) => {
         <TextInput style={styles.input} placeholder="Username" onChangeText={(text)=>{setUsernameState(text)}}/>
         <Text>{'\n'}</Text>
         <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(text)=>{setPasswordState(text)}}/>
-        <Button title="Sign In" onPress={()=>{checkUserExists(), navigation.navigate("UserJourneys")}}/>
+        <Button title="Sign In" onPress={()=>{checkUserExists(), navigation.navigate("Crossway")}}/>
         {userExists===false ? <Text>Username/password incorrect</Text> : <Text></Text>} 
         </View> 
         <View>

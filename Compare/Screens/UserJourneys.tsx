@@ -20,7 +20,7 @@ import Logo from '../Components/Logo';
 
 
 
-export default function FindUserJourney(){
+export default function FindUserJourney({navigation}){
    
     const [start, setPickup]=useState("")
     const [end, setDestination]=useState("")
@@ -41,7 +41,8 @@ export default function FindUserJourney(){
                 "collection": "userJourneys",
                 "database": "UserDatabase",
                 "dataSource": "theWasabiBeesSpike",
-                "filter": {"pickup": start, "destination": end, "spaces": {"$gte" : passengers}, "date": date}
+                "filter": {"pickup": start, "destination": end, "spaces": {"$gte" : passengers}}
+                // , "date": date
             }
             };
             setJourneyFound("")
@@ -88,7 +89,7 @@ export default function FindUserJourney(){
             <TouchableOpacity style={{borderColor:'#F19931'}}>
             <Pressable style={{alignItems:'center', justifyContent:'center', paddingVertical:10, paddingHorizontal:30, borderRadius: 100,}}>
               <Text style={{backgroundColor:"#F2993F", 
-            color:"white", fontSize:17, paddingHorizontal:10, paddingVertical:5}} onPress={() => createUser()}>Find Journey</Text>
+            color:"white", fontSize:17, paddingHorizontal:10, paddingVertical:5}} onPress={() => {navigation.navigate("Posts"), createUser()}}>Find Journey</Text>
             {foundJourney==="success" ? <Text>We have found you a journey!</Text> : <Text></Text>}
             {foundJourney==="failure" ? Alert.alert(`Sorry no journeys match your search criteria`) : <Text></Text>}
             </Pressable>
