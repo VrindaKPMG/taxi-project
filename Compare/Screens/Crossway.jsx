@@ -1,5 +1,6 @@
 import { Text, View, SafeAreaView, StyleSheet, Pressable} from "react-native";
 import LogoHeader from "../Components/LogoHeader";
+import Car from "../Components/Image"
 
 
 
@@ -23,15 +24,13 @@ const Crossway = ({navigation}) => {
                 My Profile 🤗
                 </Text>
             </Pressable>
+            <Text>{'\n'}</Text>
+            <Car></Car>
                 
-                
-                
-
             </View>
-            <View style={{alignItems:'center', backgroundColor:'#F5DCE2'}}>
 
-
-            </View>
+            
+           
            
         </SafeAreaView>
     )

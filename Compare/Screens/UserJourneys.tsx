@@ -65,24 +65,24 @@ export default function FindUserJourney({navigation}){
 
             <View style={{flexDirection:"row", flexWrap:"wrap"}}>
             <Logo></Logo>
-            <Text style={{fontSize:20, paddingLeft:20, fontWeight:"800"}}>{'\n'}{'\n'}Journey Details</Text> 
+            <Text style={{fontSize:25, paddingLeft:20, fontWeight:"800"}}>{'\n'}Journey Details</Text> 
             </View>
             
             <View>
-            <Text>{'\n'}</Text>
-            <Text>Enter your pickup destination:</Text>
+            <Text> </Text>
+            <Text style={styles.titles}>Enter your pickup destination:</Text>
             <TextInput  style={styles.input} placeholder="Pickup" onChangeText={(text)=>{setPickup(text)}}/>
-            <Text>{'\n'}</Text>
-            <Text>Enter your drop off destination:</Text>
+            <Text> </Text>
+            <Text style={styles.titles}>Enter your drop off destination:</Text>
             <TextInput style={styles.input} placeholder="Dropoff"  onChangeText={(text)=>{setDestination(text)}}/>
-            <Text>{'\n'}</Text>
-            <Text>How many passengers:</Text>
+            <Text> </Text>
+            <Text style={styles.titles}>How many passengers:</Text>
             <TextInput style={styles.input} placeholder="Passengers"  onChangeText={(text)=>{setPassengers(text)}}/>
-            <Text>{'\n'}</Text>
-            <Text>Date:</Text>
+            <Text> </Text>
+            <Text style={styles.titles}>Date:</Text>
             <TextInput style={styles.input} placeholder="DD/MM/YY"  onChangeText={(text)=>{setDate(text)}}/>
-            <Text>{'\n'}</Text>
-            <Text>Time:</Text>
+            <Text> </Text>
+            <Text style={styles.titles}>Time:</Text>
             <TextInput style={styles.input} placeholder="00:00"  onChangeText={(text)=>{setTime(text)}}/>
             
 
@@ -102,22 +102,6 @@ export default function FindUserJourney({navigation}){
 };
 
 const styles = StyleSheet.create({
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-    },
-    highlight: {
-      fontWeight: '700',
-    },
     input: {
       borderColor: "grey",
       backgroundColor:'#FCF9F5',
@@ -126,4 +110,8 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       padding: 10,
     },
+    titles: {
+      fontSize:15,
+      fontWeight: '600'
+    }, 
   });

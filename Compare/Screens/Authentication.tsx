@@ -1,12 +1,10 @@
-import { Text, View, Button, SafeAreaView,ScrollView,
+import { Text, View, Button, SafeAreaView,
     StatusBar,
     StyleSheet,
-    useColorScheme,
+    
+    Alert,
     TextInput, } from "react-native";
 import Header from "../Components/Header";
-import {
-    Colors,
-} from 'react-native/Libraries/NewAppScreen';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -37,9 +35,9 @@ const Authentication = ({navigation}) => {
         axios(getUser)
             .then(function (response) {
                 if(response.data.document===null){
-                    setUserExists(false)
+                    Alert.alert("Username or password does not exist.")
                 } else{
-                    setUserExists(true)
+                    navigation.navigate("Crossway")
                 }
             })
             .catch(function (error) {
@@ -56,8 +54,8 @@ const Authentication = ({navigation}) => {
         <TextInput style={styles.input} placeholder="Username" onChangeText={(text)=>{setUsernameState(text)}}/>
         <Text>{'\n'}</Text>
         <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(text)=>{setPasswordState(text)}}/>
-        <Button title="Sign In" onPress={()=>{checkUserExists(), navigation.navigate("Crossway")}}/>
-        {userExists===false ? <Text>Username/password incorrect</Text> : <Text></Text>} 
+        <Button title="Sign In" onPress={()=> {if(user===""||pass===""){Alert.alert(`Please fill in the required fields`)}else{checkUserExists()}}}/>
+        
         </View> 
         <View>
         <Text style={{fontSize:20}}>Don't have an account? <Button color="#492C2D" title="Sign Up" onPress={()=> navigation.navigate("SignUp")}></Button></Text>
