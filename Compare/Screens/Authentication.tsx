@@ -2,6 +2,7 @@ import { Text, View, Button, SafeAreaView,ScrollView,
     StatusBar,
     StyleSheet,
     useColorScheme,
+    Alert,
     TextInput, } from "react-native";
 import Header from "../Components/Header";
 import {
@@ -15,7 +16,6 @@ import axios from 'axios';
 const Authentication = ({navigation}) => {
     const [user, setUsernameState]=useState("")
     const [pass, setPasswordState]=useState("")
-    const [userExists, setUserExists]=useState(true)
 
     function checkUserExists(){
         const getUser = {
@@ -33,19 +33,19 @@ const Authentication = ({navigation}) => {
             "filter": {"username": user, "password": pass}
         }
         };
-        setUserExists(true)
         axios(getUser)
             .then(function (response) {
                 if(response.data.document===null){
-                    setUserExists(false)
+                    Alert.alert(`Username/password does not exist`)
                 } else{
-                    setUserExists(true)
+                    navigation.navigate("UserJourneys")
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
+    
     return (
         <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
             <View >
@@ -56,8 +56,7 @@ const Authentication = ({navigation}) => {
         <TextInput style={styles.input} placeholder="Username" onChangeText={(text)=>{setUsernameState(text)}}/>
         <Text>{'\n'}</Text>
         <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(text)=>{setPasswordState(text)}}/>
-        <Button title="Sign In" onPress={()=>{checkUserExists(), navigation.navigate("UserJourneys")}}/>
-        {userExists===false ? <Text>Username/password incorrect</Text> : <Text></Text>} 
+        <Button title="Sign In" onPress={()=>{if(user===""||pass===""){Alert.alert(`Please fill in the required fields`)}else{checkUserExists()}}}/>
         </View> 
         <View>
         <Text style={{fontSize:20}}>Don't have an account? <Button color="#492C2D" title="Sign Up" onPress={()=> navigation.navigate("SignUp")}></Button></Text>
