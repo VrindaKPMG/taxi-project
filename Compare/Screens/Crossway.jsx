@@ -1,6 +1,6 @@
 import { Text, View, SafeAreaView, StyleSheet, Pressable} from "react-native";
 import LogoHeader from "../Components/LogoHeader";
-import Car from "../Components/Image"
+import {Car} from "../Components/Image"
 import Profile from "./Profile";
 
 

@@ -3,11 +3,12 @@ import { Text, View, Button, SafeAreaView,
     StyleSheet,
     Pressable,
     Alert,
-    TextInput, } from "react-native";
+    TextInput, ScrollView } from "react-native";
 import Header from "../Components/Header";
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import Welcome from "../Components/Welcome";
+import { BuzzingBee } from "../Components/Image";
+import { BuzzingBeee } from "../Components/Image";
 
 
 
@@ -51,10 +52,12 @@ const Authentication = ({navigation}) => {
 
     
     return (
-        <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
+        <SafeAreaView style={{backgroundColor:'#f8efdc', flex:1}}>
+            <ScrollView>
             <View >
             <Header></Header>
         </View>
+        
         <View style={{alignItems:"center"}}> 
         <Text style={styles.titles}>{'\n'}Sign Into Your Account{'\n'}</Text> 
         <TextInput style={styles.input} placeholder="Username" onChangeText={(text)=>{setUsernameState(text)}}/>
@@ -64,12 +67,12 @@ const Authentication = ({navigation}) => {
         <Text style={styles.buttonText} onPress={()=> {if(user===""||pass===""){Alert.alert(`Please fill in the required fields`)}else{checkUserExists()}}}>Sign In</Text>
         </Pressable>
         </View> 
-
-        <View style={{alignItems:"center"}}>
-        <Text>{'\n'}{'\n'}{'\n'}</Text>
-    
-        <Text style={{fontSize:25, fontWeight:"500"}}>Not part of the hive yet?</Text>
-        <Text>🐝</Text>
+        
+        
+        
+        <View style={{alignItems:"center", flex:1}}>    
+        <BuzzingBeee></BuzzingBeee>    
+        <Text style={{fontSize:25, fontWeight:"500"}}>Not part of the hive yet? </Text>
         <Pressable > 
             <Text style={styles.buttonText} onPress={()=> {navigation.navigate("SignUp")} }>Sign Up
             </Text></Pressable>
@@ -77,7 +80,7 @@ const Authentication = ({navigation}) => {
 
             <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
         
-
+            </ScrollView>
         </SafeAreaView>
         
     )

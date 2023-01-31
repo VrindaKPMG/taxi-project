@@ -81,28 +81,31 @@ const MyBookings = () => {
                       borderWidth: 5,
                     }}>
                     <Text> </Text>
-                    <Text style={styles.titles}>New Journey With</Text>
+                    <Text style={styles.titles}>New Journey With {res.username}</Text>
                     <Text style={styles.titles}>
-                      Pickup From{' '}
-                      <Text style={styles.highlight}>{res.pickup}</Text>{' '}
-                    </Text>
-                    <Text style={styles.titles}>and</Text>
-                    <Text style={styles.titles}>
-                      Drop Off At{' '}
+                       From{' '}
+                      <Text style={styles.highlight}>{res.pickup}</Text> To{' '}
                       <Text style={styles.highlight}>{res.destination}</Text>{' '}
                     </Text>
-                    <Text>Car Details:</Text>
-                    <Text>Colour: {res.cardetails.colour}</Text>
-                    <Text>Reg: {res.cardetails.plate}</Text>
-                    <Text>Model: {res.cardetails.size}</Text>
-    
+
+                    <Text></Text>
+                    <Text style={styles.titles}>📅 {res.date} at {res.time}</Text>
+
+                    <Text></Text>
                     <Text style={styles.highlight}>{res.price}</Text>
+                  
+                    <Text></Text>
+                    <Text style={styles.titles}>Your Ride Details:</Text>
+                <Text style={styles.titles}>Colour: {res.cardetails.colour}</Text>
+                <Text style={styles.titles}>Reg: {res.cardetails.plate}</Text>
+                <Text style={styles.titles}>Model: {res.cardetails.size}</Text>
+    
+                    <Text></Text>
                     <Text style={styles.titles}>
-                      Seats available: {res.spaces} With Bootspace:{' '}
+                      Seats reserved: {res.spaces}   With Bootspace:{' '}
                       {res.bootspace}
                     </Text>
-                    <Text style={styles.titles}>When: {res.date}</Text>
-                    <Text style={styles.titles}>{res.time}</Text>
+                    
     
                     
                   </View>
@@ -132,8 +135,8 @@ const MyBookings = () => {
         bigTitle: {
             fontSize:20,
             fontWeight:'600',
-            paddingLeft: 20,
-            paddingTop:30
+            paddingLeft: 17,
+            paddingTop:35
     
         }
       });

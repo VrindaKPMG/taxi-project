@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import {useState} from 'react';
 import Logo from '../Components/Logo';
+import { HighFive } from '../Components/Image';
 
 export default function FindUserJourney({navigation}) {
   const [start, setPickup] = useState('');
@@ -83,12 +84,6 @@ export default function FindUserJourney({navigation}) {
     axios(bookJourney)
       .then(function (response) {
         console.log("success")
-        console.log(response.data)
-        console.log(start, end, user)
-        
-        
-       
-       
         
       })
       .catch(function (error) {
@@ -245,7 +240,7 @@ export default function FindUserJourney({navigation}) {
                         paddingVertical: 5,
                       }}
                       onPress={() => {
-                        Alert.alert("Successfully Booked Your Journey")
+                        Alert.alert(`Successfully Booked Your Journey`)
                         navigation.navigate('Map')
                         setUsername(result.username)
                         bookedByFunction()

@@ -1,18 +1,18 @@
 import {Text, View, Pressable, SafeAreaView} from 'react-native';
 import Header from '../Components/Header';
-import Welcome from '../Components/Welcome';
+import { WorkingBee } from '../Components/Image';
+
 
 const Profile = ({navigation}) => {
-
- 
 
 
   return (
     <SafeAreaView style={{backgroundColor: '#F5DCE2', flex: 1}}>
+        <Text></Text>
         <Header></Header>
         <Text>{'\n'}</Text>
       <View style={{alignItems:'center'}}>
-        <Text>Welcome</Text>
+        
         </View>
 
 
@@ -38,6 +38,12 @@ const Profile = ({navigation}) => {
                 My Bookings
               </Text>
             </Pressable>
+            <Text></Text>
+            <View style={{alignItems:'center'}}>
+            <WorkingBee></WorkingBee>
+            </View>
+        
+            <Text></Text>
 
 
             <Pressable

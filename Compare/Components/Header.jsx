@@ -7,7 +7,7 @@ import LogoHeader from "./LogoHeader";
 const Header = () => {
     return (
 
-            <View style={{alignItems:'center'}}>
+            <View style={{alignItems:'center', paddingTop:7}}>
                 <LogoHeader/>
             </View>
             
