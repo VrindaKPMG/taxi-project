@@ -26,6 +26,7 @@ import FindUserJourney from './Screens/UserJourneys';
 import Crossway from './Screens/Crossway';
 import PostJourney from './Screens/PostJourneys';
 import MyPosts from './Screens/MyPosts';
+import MyBookings from './Screens/MyBookings';
 
 const Stack = createNativeStackNavigator();
 
@@ -89,7 +90,12 @@ function App(): JSX.Element {
         <Stack.Screen
         name="MyPosts"
         component={MyPosts}
-        options={{title:`Check out your posts`}}/>
+        options={{title:`My Posts`}}/>
+
+        <Stack.Screen
+        name="MyBookings"
+        component={MyBookings}
+        options={{title:`My Bookings`}}/>
 
         </Stack.Navigator>
 

@@ -22,6 +22,9 @@ export default function FindUserJourney({navigation}) {
   const [time, setTime] = useState('12:00');
   const [foundJourney, setJourneyFound] = useState('');
   const [results, setResults] = useState([]);
+  const [user, setUsername] = useState('')
+
+
 
   const createUser = () => {
     const findJourney = {
@@ -38,7 +41,7 @@ export default function FindUserJourney({navigation}) {
         database: 'UserDatabase',
         dataSource: 'theWasabiBeesSpike',
         filter: {pickup: start, destination: end, spaces: {$gte: passengers}},
-        // , "date": date
+        
       },
     };
     setJourneyFound('');
@@ -48,6 +51,8 @@ export default function FindUserJourney({navigation}) {
           Alert.alert(`Sorry no journeys match your search criteria`);
         } else {
           setResults(response.data.documents);
+          
+          
         }
       })
       .catch(function (error) {
@@ -55,7 +60,49 @@ export default function FindUserJourney({navigation}) {
       });
   };
 
-  console.log(results, 'in userjourney');
+  const bookedByFunction = () => {
+    const bookJourney = {
+      method: 'post',
+      url: 'https://data.mongodb-api.com/app/data-vntgp/endpoint/data/v1/action/updateOne',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key':
+          'xquVAgzFxwWEBlGq9G2e0CrnSBthpyoQ71aye24687Lpxb277fSg1OkISL1JZl5K',
+      },
+      data: {
+        collection: 'userJourneys',
+        database: 'UserDatabase',
+        dataSource: 'theWasabiBeesSpike',
+        filter: {"username" : user, "pickup": start, "destination": end},
+        update: {"$set":{booked_by: "TestUser"}}
+        
+      },
+    };
+    setJourneyFound('');
+    axios(bookJourney)
+      .then(function (response) {
+        console.log("success")
+        console.log(response.data)
+        console.log(start, end, user)
+        
+        
+       
+       
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
+
+  
+
+
+
+
+  
 
   return (
     <SafeAreaView style={{backgroundColor: '#F5DCE2', flex: 1}}>
@@ -199,7 +246,10 @@ export default function FindUserJourney({navigation}) {
                       }}
                       onPress={() => {
                         Alert.alert("Successfully Booked Your Journey")
-                        navigation.navigate('Map');
+                        navigation.navigate('Map')
+                        setUsername(result.username)
+                        bookedByFunction()
+                        
                       }}>
                       Book This Journey
                     </Text>

@@ -33,7 +33,7 @@ const Profile = ({navigation}) => {
                   paddingVertical: 5,
                 }}
                 onPress={() => {
-                  createUser();
+                  navigation.navigate("MyBookings");
                 }}>
                 My Bookings
               </Text>
