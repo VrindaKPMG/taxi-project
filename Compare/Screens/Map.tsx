@@ -155,7 +155,7 @@ const Map = () => {
           }}
         />
         <TouchableOpacity style={styles.button} onPress={traceRoute}>
-          <Text style={styles.buttonText}>Show my route</Text>
+          <Text style={styles.buttonText}>Check my route</Text>
         </TouchableOpacity>
         {distance && duration ? (
           <View>

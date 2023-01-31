@@ -1,53 +1,69 @@
-import { Text, View, Pressable, Button } from "react-native";
-import Header from "../Components/Header";
+import {Text, View, Pressable, SafeAreaView} from 'react-native';
+import Header from '../Components/Header';
+import Welcome from '../Components/Welcome';
+
+const Profile = ({navigation}) => {
+
+ 
 
 
-const Profile = () => {
-
-    const findProfile=()=>{
-        const findJourney = {
-            method: 'get',
-            url: 'https://data.mongodb-api.com/app/data-vntgp/endpoint/data/v1/action/findOne',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Request-Headers': '*',
-                'api-key': 'xquVAgzFxwWEBlGq9G2e0CrnSBthpyoQ71aye24687Lpxb277fSg1OkISL1JZl5K',
-            },
-            data: {
-                "collection": "userJourneys",
-                "database": "UserDatabase",
-                "dataSource": "theWasabiBeesSpike",
-                "filter": {"pickup": start, "destination": end, "spaces": {"$gte" : passengers}}
-                // , "date": date
-            }
-            };
-            setJourneyFound("")
-            axios(findJourney)
-            .then(function (response) {
-                if(response.data.documents.length===0){
-                  setJourneyFound("failure")
-                }else{
-                  setJourneyFound("success")
-                }
-            })
-            .catch(function (error) {
-            console.log(error);
-            })
-    }
-
-    return (
-        <View style={{backgroundColor:'#F5DCE2', flex:1}}>
-            <Header></Header>
-            <Text>User profile will go here with their image in a circle, username, list of posts - journey to...</Text>
-            
+  return (
+    <SafeAreaView style={{backgroundColor: '#F5DCE2', flex: 1}}>
+        <Header></Header>
+        <Text>{'\n'}</Text>
+      <View style={{alignItems:'center'}}>
+        <Text>Welcome</Text>
         </View>
 
-    )
 
+      <Pressable
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 10,
+                paddingHorizontal: 30,
+                borderRadius: 100,
+              }}>
+              <Text
+                style={{
+                  backgroundColor: '#F2993F',
+                  color: 'white',
+                  fontSize: 17,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                }}
+                onPress={() => {
+                  createUser();
+                }}>
+                My Bookings
+              </Text>
+            </Pressable>
+
+
+            <Pressable
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 10,
+                paddingHorizontal: 30,
+                borderRadius: 100,
+              }}>
+              <Text
+                style={{
+                  backgroundColor: '#F2993F',
+                  color: 'white',
+                  fontSize: 17,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                }}
+                onPress={() => {
+                 navigation.navigate("MyPosts") ;
+                }}>
+                My Posts
+              </Text>
+            </Pressable>
+    </SafeAreaView>
+  );
 };
 
 export default Profile;
-
-
-
-

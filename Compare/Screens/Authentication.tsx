@@ -7,6 +7,7 @@ import { Text, View, Button, SafeAreaView,
 import Header from "../Components/Header";
 import { useState, useContext } from 'react';
 import axios from 'axios';
+import Welcome from "../Components/Welcome";
 
 
 
@@ -39,12 +40,16 @@ const Authentication = ({navigation}) => {
                     Alert.alert("Username or password does not exist.")
                 } else{
                     navigation.navigate("Crossway")
+                    
+
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
+
+    
     return (
         <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
             <View >
@@ -66,14 +71,15 @@ const Authentication = ({navigation}) => {
         <Text style={{fontSize:25, fontWeight:"500"}}>Not part of the hive yet?</Text>
         <Text>🐝</Text>
         <Pressable > 
-            <Text style={styles.buttonText} onPress={()=> navigation.navigate("SignUp")}>Sign Up
+            <Text style={styles.buttonText} onPress={()=> {navigation.navigate("SignUp")} }>Sign Up
             </Text></Pressable>
             </View>
 
-        </SafeAreaView>
-        
+            <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
         
 
+        </SafeAreaView>
+        
     )
 
 };

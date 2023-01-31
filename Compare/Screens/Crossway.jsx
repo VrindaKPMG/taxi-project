@@ -1,10 +1,13 @@
 import { Text, View, SafeAreaView, StyleSheet, Pressable} from "react-native";
 import LogoHeader from "../Components/LogoHeader";
 import Car from "../Components/Image"
+import Profile from "./Profile";
 
 
 
-const Crossway = ({navigation}) => {
+const Crossway = ({navigation, user}) => {
+
+    
 
     return (
         <SafeAreaView style={{flex:1, backgroundColor:'#F5DCE2'}}>
@@ -20,7 +23,7 @@ const Crossway = ({navigation}) => {
             <Text style={styles.buttonText} onPress={() => navigation.navigate("UserJourneys")}>
                 Find a ride 🚗
                 </Text>
-            <Text style={styles.buttonText} onPress={() => navigation.navigate("Profile")}>
+            <Text style={styles.buttonText} onPress={() => {navigation.navigate("Profile"), <Profile user={user}/>}}>
                 My Profile 🤗
                 </Text>
             </Pressable>

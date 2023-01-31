@@ -25,6 +25,7 @@ import Profile from './Screens/Profile';
 import FindUserJourney from './Screens/UserJourneys';
 import Crossway from './Screens/Crossway';
 import PostJourney from './Screens/PostJourneys';
+import MyPosts from './Screens/MyPosts';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,9 +60,15 @@ function App(): JSX.Element {
         options={{title:"Join the hive."}}/>
 
         <Stack.Screen
+        name="Crossway"
+        component={Crossway}
+        options={{title:`Welcome to BeeRide`}}/>
+
+        <Stack.Screen
         name="Posts"
         component={Posts}
         options={{title:`Your ride awaits`}}/>
+
 
         <Stack.Screen
         name="Profile"
@@ -73,15 +80,16 @@ function App(): JSX.Element {
         component={FindUserJourney}
         options={{title:`Journeys for You`}}/>
 
-        <Stack.Screen
-        name="Crossway"
-        component={Crossway}
-        options={{title:`Welcome to BeeRide`}}/>
 
         <Stack.Screen
         name="PostJourney"
         component={PostJourney}
         options={{title:`Post your journey. Make some honey. 🍯`}}/>    
+
+        <Stack.Screen
+        name="MyPosts"
+        component={MyPosts}
+        options={{title:`Check out your posts`}}/>
 
         </Stack.Navigator>
 
