@@ -4,17 +4,15 @@ import {
     SafeAreaView,
     StyleSheet,
     Text,
-    useColorScheme,
     View,
     TextInput,
-    Button,
     Alert, 
     TouchableOpacity,
-    Pressable
+    Pressable,
+    ScrollView
   } from 'react-native';
 import { useState } from 'react';
 import Logo from '../Components/Logo';
-import Posts from './Posts';
 
 
 
@@ -28,7 +26,7 @@ export default function FindUserJourney({navigation}){
     const [date, setDate]=useState('26/01/23')
     const [time, setTime]=useState('12:00')
     const [foundJourney, setJourneyFound]=useState("")
-    const [results, setResults] = useState([])
+    const [results, setResults] = useState(["a value"])
 
     const createUser=()=>{
         const findJourney = {
@@ -54,8 +52,8 @@ export default function FindUserJourney({navigation}){
                 if(response.data.documents.length===0){
                   Alert.alert(`Sorry no journeys match your search criteria`)
                 }else{
-                   setResults(response.data.documents)    
-                 
+                   setResults(response.data.documents) 
+                   
                 }
             })
             .catch(function (error) {
@@ -69,6 +67,7 @@ export default function FindUserJourney({navigation}){
 
     return (
         <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
+          <ScrollView>
 
             <View style={{flexDirection:"row", flexWrap:"wrap"}}>
             <Logo></Logo>
@@ -96,18 +95,46 @@ export default function FindUserJourney({navigation}){
             <TouchableOpacity style={{borderColor:'#F19931'}}>
             <Pressable style={{alignItems:'center', justifyContent:'center', paddingVertical:10, paddingHorizontal:30, borderRadius: 100,}}>
               <Text style={{backgroundColor:"#F2993F", 
-            color:"white", fontSize:17, paddingHorizontal:10, paddingVertical:5}} onPress={() => {createUser(), navigation.navigate("Posts")}}>Find Journey</Text>
+            color:"white", fontSize:17, paddingHorizontal:10, paddingVertical:5}} onPress={() => {createUser()}}>Find Journey</Text>
            
             </Pressable>
             </TouchableOpacity>
 
             </View>
 
-            <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+            <View style={{alignItems:"center"}}>
+            <Text>{'\n'}</Text>
+            <Text style={{fontSize:20}}>Available Journeys</Text>
+
+            </View>
+
             
-            {results !== undefined ? <Posts results={results} /> : null }
+            <Text>{'\n'}</Text>
             
 
+            {results.map((result) => {
+                        return (
+                        <View key={result._id} style={{backgroundColor:"#6BA09E", alignItems:"center"}}>
+                        
+                          <Text style={styles.titles}>New Journey</Text>
+                          <Text style={styles.titles}>Posted By {result.username}</Text>
+                            <Text style={styles.titles}>Pickup Location: {result.pickup}</Text>
+                            <Text style={styles.titles}>Drop Off Location: {result.destination}</Text>
+                            <Text style={styles.titles}>{result.price}</Text>
+                            <Text style={styles.titles}>When: {result.date}</Text> 
+                            <Text style={styles.titles}>{result.time}</Text>
+                            <Pressable>
+                              <Text onPress={() => {navigation.navigate("Posts")}}>Book Journey</Text>
+                            </Pressable>
+                          
+                            
+                            
+                        </View>
+                        
+                        
+                        )
+                    }) }    
+          </ScrollView>   
         </SafeAreaView>
     )
 };

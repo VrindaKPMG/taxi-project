@@ -63,7 +63,8 @@ const Authentication = ({navigation}) => {
         <View style={{alignItems:"center"}}>
         <Text>{'\n'}{'\n'}{'\n'}</Text>
     
-        <Text style={{fontSize:25, fontWeight:"500"}}>Don't have an account?</Text>
+        <Text style={{fontSize:25, fontWeight:"500"}}>Not part of the hive yet?</Text>
+        <Text>🐝</Text>
         <Pressable > 
             <Text style={styles.buttonText} onPress={()=> navigation.navigate("SignUp")}>Sign Up
             </Text></Pressable>
