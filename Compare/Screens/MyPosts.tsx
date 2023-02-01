@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, Pressable, Alert } from "react-native";
 import axios from "axios";
 import { useState } from "react";
 import Logo from "../Components/Logo";
@@ -11,6 +11,9 @@ const MyPosts = () => {
     const [username, setUser] = useState("TestUser")
     // const [post, setPost] = useState(false)
     const [result, setResult] = useState([])
+    const [cost, setCost] = useState("");
+    const [start, setStart] = useState("");
+    const [end, setEnd] = useState("");
 
     const getPosts = () => {
         const findPosts = {
@@ -34,13 +37,11 @@ const MyPosts = () => {
         axios(findPosts)
           .then(function (response) {
             if (response.data.documents.length === 0) {
-                console.log(response.data.documents, "in posts")
                 return (
                     <Text>You have no journeys</Text>
                 )
               
             } else {
-                // setPost(true)
                 setResult(response.data.documents)
               
             }
@@ -50,6 +51,41 @@ const MyPosts = () => {
           });
       };
       getPosts()
+
+
+      const deletePosts = () => {
+        const findAndDeletePosts = {
+          method: 'post',
+          url: 'https://data.mongodb-api.com/app/data-vntgp/endpoint/data/v1/action/find',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Request-Headers': '*',
+            'api-key':
+              'xquVAgzFxwWEBlGq9G2e0CrnSBthpyoQ71aye24687Lpxb277fSg1OkISL1JZl5K',
+          },
+          data: {
+            "collection": 'userJourneys',
+            "database": 'UserDatabase',
+            "dataSource": 'theWasabiBeesSpike',
+            "filter": {"username": username},
+            "delete": {"price": cost, "pickup": start, "destination": end }
+           
+          },
+        };
+        
+        axios(findAndDeletePosts)
+          .then(function () {
+            console.log("something")
+            Alert.alert("Post deleted")
+
+
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      };
+      
+     
       
       
 
@@ -102,17 +138,21 @@ const MyPosts = () => {
                 <Text style={styles.titles}>Colour: {res.cardetails.colour}</Text>
                 <Text style={styles.titles}>Reg: {res.cardetails.plate}</Text>
                 <Text style={styles.titles}>Model: {res.cardetails.size}</Text>
-
+                
                 <Text></Text>
                 <Text style={styles.titles}>
-                  Seats available: {res.spaces} With Bootspace:{' '}
+                  Seats available: {res.spaces}   With Bootspace:{' '}
                   {res.bootspace}
                 </Text>
-                <Text> </Text>
-                
 
                 
+                <Pressable>
+                    <Text style={styles.buttonText} onPress={() => {setCost(res.price), setStart(res.pickup), setEnd(res.destination), deletePosts() }}>Delete Post</Text>
+                    </Pressable>
+                <Text></Text>
+                
               </View>
+              
 
 
             ) })}
@@ -140,8 +180,16 @@ const styles = StyleSheet.create({
         fontWeight:'600',
         paddingLeft: 20,
         paddingTop:30
-
-    }
+    },
+    buttonText: {
+        fontSize: 15, 
+        fontWeight:"400",
+        backgroundColor:"#F2993F", 
+        color:"white",
+        paddingHorizontal:10, 
+        paddingVertical:5,
+        marginTop:10
+      },
   });
 
 

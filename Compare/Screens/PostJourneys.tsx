@@ -30,6 +30,7 @@ const PostJourney = ({navigation}) => {
   const [plate, setPlateState] = useState('');
   const [colour, setCarColourState] = useState('');
   const [size, setSizeState] = useState('');
+  const [cost, setPriceState] =useState("");
 
   function submit() {
     const Userstart = start;
@@ -39,6 +40,7 @@ const PostJourney = ({navigation}) => {
     const Userspace = space;
     const Userboot = boot;
     const Usercar = {plate, colour, size};
+    const Userprice = cost
 
     console.warn(Userstart, Userend, Userspace, Userboot, Usercar);
 
@@ -64,6 +66,7 @@ const PostJourney = ({navigation}) => {
           spaces: Userspace,
           bootspace: Userboot,
           cardetails: Usercar,
+          price : Userprice
         },
       },
     };
@@ -104,7 +107,7 @@ const PostJourney = ({navigation}) => {
           }}
         />
 
-        <Text style={styles.titles}>{'\n'}Date & Time of Departure{'\n'}</Text>
+        <Text style={styles.titles}>{'\n'}Date & Time of Departure:{'\n'}</Text>
 
         <TextInput
           style={styles.input}
@@ -140,7 +143,7 @@ const PostJourney = ({navigation}) => {
           }}
         />
         <Text> </Text>
-        <Text style={styles.titles}>Tell us about you car</Text>
+        <Text style={styles.titles}>Tell us about you car:</Text>
         <Text> </Text>
         <Text style={styles.titles}>Car Number Plate</Text>
         <TextInput
@@ -168,6 +171,17 @@ const PostJourney = ({navigation}) => {
             setSizeState(text);
           }}
         />
+        <Text> </Text>
+        <Text style={styles.titles}>Listing Price (£)</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="eg. 15.00"
+          onChangeText={text => {
+            setPriceState(`£${text}`);
+          }}
+        />
+
+
         <Pressable style={{alignItems:'center'}}>
         <Text style={styles.buttonText} onPress={() => {submit()}}>
         Submit Journey

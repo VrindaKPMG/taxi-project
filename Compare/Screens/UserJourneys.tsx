@@ -195,7 +195,7 @@ export default function FindUserJourney({navigation}) {
                 }}
                 onPress={() => {
                   createUser();
-                  taxiFare();
+                  // taxiFare();
                 }}>
                 Find Journey
               </Text>
@@ -210,10 +210,10 @@ export default function FindUserJourney({navigation}) {
 
         <Text>{'\n'}</Text>
         
-        {taxi !== undefined ? <View style={{alignItems: 'center', marginLeft: 25, marginRight: 25,}}>
+        {/* {taxi !== undefined ? <View style={{alignItems: 'center', marginLeft: 25, marginRight: 25,}}>
         <Text style={{fontSize:15, fontWeight:"600", backgroundColor:"#f5dce2"}}>A taxi for this trip could cost up to £{taxi} 💰</Text>
         <Text>{'\n'}</Text>
-        </View> : null}
+        </View> : null} */}
         
         
 
@@ -268,8 +268,6 @@ export default function FindUserJourney({navigation}) {
                         Alert.alert(`Successfully Booked Your Journey`)
                         navigation.navigate('Map')
                         setUsername(result.username)
-                        setSpaces((result.spaces - passengers))
-                        console.log(space)
                         bookedByFunction()
                         
                       }}>

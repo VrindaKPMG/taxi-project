@@ -51,6 +51,7 @@ const Authentication = ({navigation}) => {
     }
 
     
+    
     return (
         <SafeAreaView style={{backgroundColor:'#f8efdc', flex:1}}>
             <ScrollView>
