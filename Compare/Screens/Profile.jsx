@@ -7,7 +7,7 @@ const Profile = ({navigation}) => {
 
 
   return (
-    <SafeAreaView style={{backgroundColor: '#F5DCE2', flex: 1}}>
+    <SafeAreaView style={{backgroundColor: '#f8efdc', flex: 1}}>
         <Text></Text>
         <Header></Header>
         <Text>{'\n'}</Text>

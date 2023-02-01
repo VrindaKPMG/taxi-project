@@ -74,7 +74,7 @@ const SignUp = ({navigation}) => {
 
 
     return (
-        <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
+        <SafeAreaView style={{backgroundColor:'#f8efdc', flex:1}}>
             <View style={{alignItems:'center'}}>
             <Header></Header>
             <Text style={styles.titles}>{'\n'}Create An Account{'\n'}</Text>

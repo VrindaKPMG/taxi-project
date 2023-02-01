@@ -100,7 +100,7 @@ export default function FindUserJourney({navigation}) {
   
 
   return (
-    <SafeAreaView style={{backgroundColor: '#F5DCE2', flex: 1}}>
+    <SafeAreaView style={{backgroundColor: '#f8efdc', flex: 1}}>
       <ScrollView>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           <Logo></Logo>

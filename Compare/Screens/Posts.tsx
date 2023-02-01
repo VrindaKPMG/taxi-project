@@ -9,7 +9,7 @@ const Posts = () => {
 
 
         return (
-            <SafeAreaView style={{backgroundColor:'#F5DCE2', flex:1}}>
+            <SafeAreaView style={{backgroundColor:'#f8efdc', flex:1}}>
                 <View style={{backgroundColor:'#F5DCE2', flexDirection:"row"}}>
                     <Logo></Logo>
                     <Text style={{fontSize:25, fontWeight:'500'}}>{'\n'}Rides to your destination</Text>

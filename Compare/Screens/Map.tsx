@@ -7,7 +7,6 @@ import {
 import { useRef, useState } from "react";
 import React from 'react';
 import MapViewDirections from "react-native-maps-directions";
-import Header from "../Components/Header";
 import Logo from "../Components/Logo";
 
 const { width, height } = Dimensions.get("window");
@@ -112,6 +111,7 @@ const Map = () => {
     return (
          
             <View style={styles.container}>
+           
             
       <MapView
         ref={mapRef}
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     searchContainer: {
       position: "absolute",
       width: "90%",
-      backgroundColor:'#F5DCE2',
+      backgroundColor:'#f8efdc',
       shadowColor: "black",
       shadowOffset: { width: 2, height: 2 },
       shadowOpacity: 0.5,

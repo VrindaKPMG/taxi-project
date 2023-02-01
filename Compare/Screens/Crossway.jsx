@@ -10,7 +10,7 @@ const Crossway = ({navigation, user}) => {
     
 
     return (
-        <SafeAreaView style={{flex:1, backgroundColor:'#F5DCE2'}}>
+        <SafeAreaView style={{flex:1, backgroundColor:'#f8efdc'}}>
 
             <View style={{alignItems:'center'}}>
 

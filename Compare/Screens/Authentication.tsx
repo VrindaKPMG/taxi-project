@@ -69,16 +69,22 @@ const Authentication = ({navigation}) => {
         </View> 
         
         
+        <Text>{'\n'}{'\n'}</Text> 
         
-        <View style={{alignItems:"center", flex:1}}>    
-        <BuzzingBeee></BuzzingBeee>    
-        <Text style={{fontSize:25, fontWeight:"500"}}>Not part of the hive yet? </Text>
-        <Pressable > 
+        <View style={{alignItems:"center", flex:1, flexDirection:"column"}}>  
+        <BuzzingBeee></BuzzingBeee>  
+        <Text style={{fontSize:25, fontWeight:"500", position:"absolute"}}>Not part of the hive yet? </Text>
+        
+        <Pressable style={{position:"absolute"}} > 
             <Text style={styles.buttonText} onPress={()=> {navigation.navigate("SignUp")} }>Sign Up
             </Text></Pressable>
+            
             </View>
 
-            <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+        <View style={{alignItems:"center", flex:1}}>
+        
+        </View>
+            
         
             </ScrollView>
         </SafeAreaView>

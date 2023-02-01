@@ -79,10 +79,10 @@ const PostJourney = ({navigation}) => {
   }
 
   return (
-    <SafeAreaView style={{backgroundColor: '#F5DCE2', flex: 1}}>
+    <SafeAreaView style={{backgroundColor: '#f8efdc', flex: 1}}>
         <ScrollView>
 
-      <View style={{backgroundColor: '#F5DCE2', flexDirection: 'row', alignItems: "center"}}>
+      <View style={{backgroundColor: '#f8efdc', flexDirection: 'row', alignItems: "center"}}>
         <Logo></Logo>
         <Text style={styles.mainTitle}>Add A New Journey</Text>
       </View>
