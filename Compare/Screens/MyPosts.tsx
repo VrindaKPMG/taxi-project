@@ -53,10 +53,10 @@ const MyPosts = () => {
       getPosts()
 
 
-      const deletePosts = () => {
+      const deletePosts = (toDelete) => {
         const findAndDeletePosts = {
           method: 'post',
-          url: 'https://data.mongodb-api.com/app/data-vntgp/endpoint/data/v1/action/find',
+          url: 'https://data.mongodb-api.com/app/data-vntgp/endpoint/data/v1/action/deleteOne',
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Request-Headers': '*',
@@ -67,8 +67,7 @@ const MyPosts = () => {
             "collection": 'userJourneys',
             "database": 'UserDatabase',
             "dataSource": 'theWasabiBeesSpike',
-            "filter": {"username": username},
-            "delete": {"price": cost, "pickup": start, "destination": end }
+            "filter": {"username": toDelete.username, "price": toDelete.price, "pickup": toDelete.pickup, "destination": toDelete.destination }
            
           },
         };
@@ -147,7 +146,7 @@ const MyPosts = () => {
 
                 
                 <Pressable>
-                    <Text style={styles.buttonText} onPress={() => {setCost(res.price), setStart(res.pickup), setEnd(res.destination), deletePosts() }}>Delete Post</Text>
+                    <Text style={styles.buttonText} onPress={() => {deletePosts(res) }}>Delete Post</Text>
                     </Pressable>
                 <Text></Text>
                 
