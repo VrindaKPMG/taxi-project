@@ -13,7 +13,7 @@ import Logo from '../Components/Logo';
 import axios from 'axios';
 import {useState} from 'react';
 import type {PropsWithChildren} from 'react';
-// import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -127,7 +127,7 @@ const PostJourney = ({navigation}) => {
           style={styles.input}
           placeholder="Enter the number of available seats"
           onChangeText={text => {
-            setSpaceState(text);
+            setSpaceState(JSON.parse(text));
           }}
         />
         <Text> </Text>

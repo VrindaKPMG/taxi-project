@@ -23,7 +23,9 @@ export default function FindUserJourney({navigation}) {
   const [time, setTime] = useState('12:00');
   const [foundJourney, setJourneyFound] = useState('');
   const [results, setResults] = useState([]);
-  const [user, setUsername] = useState('')
+  const [user, setUsername] = useState('');
+  const [taxi, setTaxi] = useState();
+  const [space, setSpaces] = useState(9);
 
 
 
@@ -41,7 +43,7 @@ export default function FindUserJourney({navigation}) {
         collection: 'userJourneys',
         database: 'UserDatabase',
         dataSource: 'theWasabiBeesSpike',
-        filter: {pickup: start, destination: end, spaces: {$gte: passengers}},
+        filter: {pickup: start, destination: end, spaces: {$gte: passengers}}
         
       },
     };
@@ -85,6 +87,7 @@ export default function FindUserJourney({navigation}) {
       .then(function (response) {
         console.log("success")
         
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -92,7 +95,24 @@ export default function FindUserJourney({navigation}) {
 
   }
 
-  
+  const taxiFare = () => {
+    const options = {
+      method: "GET",
+      url: "https://taxi-fare-calculator.p.rapidapi.com/search-geo",
+      params: {dep_lat: "51.509865", dep_lng: "-0.118092", arr_lat: "53.799999", arr_lng: "-1.750000"},
+      headers: {
+        "X-RapidAPI-Key": "1ae02f4d8cmsh52499621311dd20p11880cjsn266edfcc4054",
+        "X-RapidAPI-Host": "taxi-fare-calculator.p.rapidapi.com"
+      },
+    };
+    axios.request(options).then(function (response) {
+      console.log((response.data.journey.fares[0]["price_in_cents"]) * 0.004);
+      const pounds =(Math.round((response.data.journey.fares[0]["price_in_cents"]) * 0.004))
+      setTaxi(pounds)
+    }).catch(function (error) {
+      console.error(error);
+    });
+    }
 
 
 
@@ -175,6 +195,7 @@ export default function FindUserJourney({navigation}) {
                 }}
                 onPress={() => {
                   createUser();
+                  taxiFare();
                 }}>
                 Find Journey
               </Text>
@@ -188,6 +209,13 @@ export default function FindUserJourney({navigation}) {
         </View>
 
         <Text>{'\n'}</Text>
+        
+        {taxi !== undefined ? <View style={{alignItems: 'center', marginLeft: 25, marginRight: 25,}}>
+        <Text style={{fontSize:15, fontWeight:"600", backgroundColor:"#f5dce2"}}>A taxi for this trip could cost up to £{taxi} 💰</Text>
+        <Text>{'\n'}</Text>
+        </View> : null}
+        
+        
 
         {results.length >= 1
           ? results.map(result => {
@@ -204,25 +232,22 @@ export default function FindUserJourney({navigation}) {
                     borderWidth: 5,
                   }}>
                   <Text> </Text>
-                  <Text style={styles.titles}>New Journey With</Text>
+                  <Text style={styles.titles}>New Journey From <Text style={styles.highlight}>{result.pickup}</Text></Text>
+                  
+                  <Text style={styles.titles}>to <Text style={styles.highlight}>{result.destination}</Text></Text>
+                  <Text></Text>
+                  <Text style={styles.titles}>On {result.date} at {result.time}</Text>
+                  <Text></Text>
+                  <Text style={{fontWeight:"700", fontSize:17, color:"#F19931"}}>{result.price}</Text>
+                  <Text></Text>
                   <Text style={styles.titles}>
-                    Pickup From{' '}
-                    <Text style={styles.highlight}>{result.pickup}</Text>{' '}
-                  </Text>
-                  <Text style={styles.titles}>and</Text>
-                  <Text style={styles.titles}>
-                    Drop Off At{' '}
-                    <Text style={styles.highlight}>{result.destination}</Text>{' '}
-                  </Text>
-                  <Text style={styles.titles}>Posted By {result.username}</Text>
-
-                  <Text style={styles.highlight}>{result.price}</Text>
-                  <Text style={styles.titles}>
-                    Seats available: {result.spaces} With Bootspace:{' '}
+                    Seats available: {result.spaces}   With Bootspace:{' '}
                     {result.bootspace}
+                
                   </Text>
-                  <Text style={styles.titles}>When: {result.date}</Text>
-                  <Text style={styles.titles}>{result.time}</Text>
+                  <Text></Text>
+                  <Text style={styles.titles}>Posted By {result.username}</Text>
+                  
                   <Pressable
                     style={{
                       alignItems: 'center',
@@ -243,6 +268,8 @@ export default function FindUserJourney({navigation}) {
                         Alert.alert(`Successfully Booked Your Journey`)
                         navigation.navigate('Map')
                         setUsername(result.username)
+                        setSpaces((result.spaces - passengers))
+                        console.log(space)
                         bookedByFunction()
                         
                       }}>
